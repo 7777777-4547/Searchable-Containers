@@ -5,7 +5,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.screen.ScreenTexts;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
@@ -23,7 +24,7 @@ public class ArrowButtonWidget extends ButtonWidget {
     private Orientation orientation;
 
     public ArrowButtonWidget(int x, int y, PressAction onPress, Orientation orientation, TooltipSupplier tooltip) {
-        super(x, y, BUTTON_WIDTH, BUTTON_HEIGHT, LiteralText.EMPTY, onPress, tooltip);
+        super(x, y, BUTTON_WIDTH, BUTTON_HEIGHT, ScreenTexts.EMPTY, onPress, tooltip);
         this.orientation = orientation;
     }
 
