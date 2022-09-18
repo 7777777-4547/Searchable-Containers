@@ -18,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import org.spongepowered.asm.mixin.Mixin;
@@ -46,11 +45,11 @@ public class HandledScreenMixin extends Screen {
     private SmartTextField textField;
     private ArrowButtonWidget toInventoryButton;
     private ButtonWidget.TooltipSupplier toInventoryTooltipSupplier = (button, matrices, mouseX, mouseY) -> {
-        this.renderOrderedTooltip(matrices, Arrays.asList(new LiteralText("Moves items from container").asOrderedText(), new LiteralText(" to the players inventory").asOrderedText()), mouseX, mouseY);
+        this.renderOrderedTooltip(matrices, Arrays.asList(Text.literal("Moves items from container").asOrderedText(), Text.literal(" to the players inventory").asOrderedText()), mouseX, mouseY);
     };
     private ArrowButtonWidget toContainerButton;
     private ButtonWidget.TooltipSupplier toContainerTooltipSupplier = (button, matrices, mouseX, mouseY) -> {
-        this.renderOrderedTooltip(matrices, Arrays.asList(new LiteralText("Moves items from the player's").asOrderedText(), new LiteralText("inventory to the open container").asOrderedText()), mouseX, mouseY);
+        this.renderOrderedTooltip(matrices, Arrays.asList(Text.literal("Moves items from the player's").asOrderedText(), Text.literal("inventory to the open container").asOrderedText()), mouseX, mouseY);
     };
     private HandledScreenAccessor accessor;
 
@@ -69,7 +68,7 @@ public class HandledScreenMixin extends Screen {
         var x = this.accessor.getContainerX() + (this.accessor.getBackgroundWidth() / 2) - (SmartTextField.FIELD_WIDTH / 2);
         var y = this.accessor.getContainerY() - SmartTextField.FIELD_HEIGHT - Config.INSTANCE.verticalPadding;
         if (!isCreativeScreen) {
-            this.textField = new SmartTextField(mc.textRenderer, x, y, new LiteralText(SmartTextField.currentText));
+            this.textField = new SmartTextField(mc.textRenderer, x, y, Text.literal(SmartTextField.currentText));
             this.textField.setChangedListener(this::textFieldChanged);
             this.addDrawableChild(this.textField);
         }
